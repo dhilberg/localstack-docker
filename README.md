@@ -14,10 +14,10 @@ dotnet new nunit --name ConsoleApp.UnitTests --output ConsoleApp.UnitTests
 dotnet sln add ConsoleApp.UnitTests/ConsoleApp.UnitTests.csproj
 ```
 
-### Add AWS SDK Reference
+### Add AWS Service References
 
 ```sh
-dotnet add ConsoleApp/ConsoleApp.csproj package AWSSDK.Core
+dotnet add ConsoleApp/ConsoleApp.csproj package AWSSDK.S3
 
 # Ensure it builds
 dotnet build LocalstackDocker.sln
