@@ -60,4 +60,4 @@ Assuming you have the Microsoft apt repos configured, PowerShell Core (pwsh) can
 sudo apt update && sudo apt install powershell -y
 ```
 
-Navigate to http://localhost:8080 to view the dashboard.
+Navigate to [http://localhost:8080](http://localhost:8080) to view the dashboard.
