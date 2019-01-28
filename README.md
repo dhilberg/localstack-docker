@@ -26,14 +26,15 @@ dotnet build LocalstackDocker.sln
 ### Firing up Localstack
 
 ```sh
-# Pull the Localstack image
-docker pull localstack/localstack
+# Pull the latest Localstack image
+docker pull localstack/localstack:latest
 
-# Run the image in a container, exposing ports 8080 for the web dashboard and 4572 for S3. Replace -d with -it to run the container interactively instead of in the background.
-docker run -d -p 8080:8080 -p 4572:4572 localstack/localstack
+# Run the image in a container with only the s3 service, exposing ports 8080 for the web dashboard and 4572 for S3.
+# Replace -d with -it to run the container interactively instead of in the background.
+docker run -d -p 8080:8080 -p 4572:4572 -e SERVICES=s3 localstack/localstack:latest
 
-# Or to expose all the default ports for all the services
-docker run -d -p 8080:8080 -p 4567-4584:4567-4584 localstack/localstack
+# Or to run all services (default if not overridden) and expose all default ports for all services
+docker run -d -p 8080:8080 -p 4567-4584:4567-4584 localstack/localstack:latest
 ```
 
 Navigate to http://localhost:8080 to view the dashboard.
