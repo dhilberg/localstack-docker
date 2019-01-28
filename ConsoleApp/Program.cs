@@ -23,14 +23,19 @@ namespace ConsoleApp
 
         public async Task UploadFile(string bucketName, string filePath)
         {
-            // Even though Localstack ignores AWS credentials, if you don't any set up, e.g. via `aws configure` (~/.aws/credentials), and you
+            // Even though Localstack ignores AWS credentials, if you don't have any set up, e.g. via `aws configure` (~/.aws/credentials), and you
             // try to invoke any methods on the S3 client you will get an HttpRequestException with a 'No route to host' error message, which is not helpful.
+            // We are using anonymous credentials here to simply avoid this issue.
             // The AWS SDK will use any configured credentials if set up.
+            // TODO: Add logic to use local AWS creds if set up, otherwise fall back to anonymous ones.
             var creds = new AnonymousAWSCredentials();
             var config = new AmazonS3Config
             {
                 ServiceURL = S3_URL,
+                // Unless configured otherwise, by default Localstack only supports http.
                 UseHttp = true,
+                // Force the use of hostname/bucket/file pattern, instead of the default bucket.hostname/file, which will cause
+                // domain name resolution issues.
                 ForcePathStyle = true
             };
 
