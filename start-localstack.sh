@@ -1,6 +1,6 @@
 #!/bin/bash
 
-image="localstack/localstack:latest"
+image="localstack/localstack:0.9.0"
 
 # Get the latest Localstack image
 docker pull $image
